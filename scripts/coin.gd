@@ -1,11 +1,8 @@
 extends Area2D
 
-static var count=0
-
-func counter()->int:
-	count+=1
-	return count
+@onready var manager=%GameManager
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _on_body_entered(body: Node2D) -> void:
-	print(counter())
-	queue_free()
+	manager.scoreCounter()
+	animation_player.play("pickUpAnimation")

@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 @onready var offset=$AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,6 +26,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			offset.play("run")
 	else:
+		animation_player.play("Jump")
 		offset.play("jump")
 	
 	if direction>0:

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cw2vk4sddp4ts" path="res://assets/sprites/knight.png" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://cwlpy7co4adc7" path="res://scripts/player.gd" id="1_v6fml"]
+[ext_resource type="AudioStream" uid="uid://d3tgppd40e4c1" path="res://assets/sounds/jump.wav" id="3_3li8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")
@@ -157,6 +158,90 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7b7a"]
 radius = 5.0
 
+[sub_resource type="Animation" id="Animation_3li8b"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jump:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump"]
+}
+
+[sub_resource type="Animation" id="Animation_mdl7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jump:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qu4a1"]
+_data = {
+&"Jump": SubResource("Animation_3li8b"),
+&"RESET": SubResource("Animation_mdl7e")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=814914065]
 collision_layer = 2
 script = ExtResource("1_v6fml")
@@ -170,3 +255,9 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354624756]
 position = Vector2(1, -7)
 shape = SubResource("CircleShape2D_g7b7a")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="." unique_id=1074884426]
+stream = ExtResource("3_3li8b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1718103383]
+libraries/ = SubResource("AnimationLibrary_qu4a1")

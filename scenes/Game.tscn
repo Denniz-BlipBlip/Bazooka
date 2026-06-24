@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ch077opq6kvdh"]
 
+[ext_resource type="Script" uid="uid://cq3whyo67oent" path="res://scripts/game_manager.gd" id="1_400sg"]
 [ext_resource type="PackedScene" uid="uid://crryvetqy8uie" path="res://scenes/Player.tscn" id="1_ibkli"]
 [ext_resource type="Texture2D" uid="uid://dqkk8eyf52g3d" path="res://assets/sprites/world_tileset.png" id="2_qbsmt"]
 [ext_resource type="PackedScene" uid="uid://cxv6r6arodbye" path="res://scenes/platform.tscn" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://dojb8fibi44gk" path="res://scenes/coin.tscn" id="4_78awf"]
 [ext_resource type="PackedScene" uid="uid://b47nt0niwhhqv" path="res://scenes/killzone.tscn" id="5_s0nni"]
 [ext_resource type="PackedScene" uid="uid://bhbuj7udbjgs1" path="res://scenes/slime.tscn" id="6_aug50"]
+[ext_resource type="FontFile" uid="uid://bq8cwadno5ebv" path="res://assets/fonts/PixelOperator8.ttf" id="7_kiw3p"]
 
 [sub_resource type="Animation" id="Animation_cpr0p"]
 length = 0.001
@@ -197,6 +199,21 @@ distance = 17.0
 [node name="Game" type="Node2D" unique_id=449491390]
 metadata/_edit_vertical_guides_ = [-699.0]
 
+[node name="GameManager" type="Node" parent="." unique_id=529966386]
+unique_name_in_owner = true
+script = ExtResource("1_400sg")
+
+[node name="Score" type="Label" parent="GameManager" unique_id=832032449]
+z_index = 1
+offset_left = 604.0
+offset_top = -60.0
+offset_right = 810.0
+offset_bottom = -13.0
+theme_override_fonts/font = ExtResource("7_kiw3p")
+text = "You  got zero coins"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Coins" type="Node" parent="." unique_id=746504729]
 
 [node name="Coin3" parent="Coins" unique_id=1386967638 instance=ExtResource("4_78awf")]
@@ -270,3 +287,15 @@ shape = SubResource("WorldBoundaryShape2D_g7b7a")
 
 [node name="Slime" parent="Slimes" unique_id=384192838 instance=ExtResource("6_aug50")]
 position = Vector2(480, 35)
+
+[node name="labels" type="Node" parent="." unique_id=1848246920]
+
+[node name="Label" type="Label" parent="labels" unique_id=880524515]
+z_index = 1
+offset_left = 14.0
+offset_top = -33.0
+offset_right = 107.0
+offset_bottom = -24.0
+theme_override_fonts/font = ExtResource("7_kiw3p")
+theme_override_font_sizes/font_size = 8
+text = "Space to jump"
